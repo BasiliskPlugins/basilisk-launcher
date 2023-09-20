@@ -70,7 +70,7 @@ public class Main {
             }
         }
         try {
-            ReadableByteChannel readableByteChannel = Channels.newChannel(new URL("https://github.com/BasiliskPlugins/releases/download/v0.0.1/RuneLiteHijack.jar").openStream());
+            ReadableByteChannel readableByteChannel = Channels.newChannel(new URL("https://github.com/DBloodworth95/runelite-hijack/releases/download/v1.0.0/runelite-hijack-1.0.jar").openStream());
 
 
             if (System.getProperty("os.name").contains("Windows")) {
