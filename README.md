@@ -1,4 +1,4 @@
-GPL 3.0 sourced Plugins and Installer updated and maintained by RuneBot
+GPL 3.0 sourced Plugins and Installer updated and maintained by Basilisk
 
 Plugins sourced from a variety of GPL sources such as Xkylee and Spoon
 
