@@ -1,0 +1,73 @@
+plugins {
+    id 'java'
+    id 'maven-publish'
+}
+
+repositories {
+    mavenLocal()
+    maven {url = 'https://repo.runelite.net/'}
+    maven {
+        name = "GitHubPackages"
+        url = uri("https://maven.pkg.github.com/BasiliskPlugins/basilisk-runelite-api")
+        credentials {
+            username = "BasiliskPlugins"
+            password = "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"
+        }
+    }
+    mavenCentral()
+}
+
+def runeLiteVersion = '1.10.10.2'
+
+dependencies {
+    compileOnly group: 'net.runelite', name: 'client', version: runeLiteVersion
+    compileOnly 'org.projectlombok:lombok:1.18.20'
+    annotationProcessor 'org.projectlombok:lombok:1.18.20'
+    testImplementation 'junit:junit:4.12'
+    testImplementation group: 'net.runelite', name: 'client', version: runeLiteVersion
+    testImplementation group: 'net.runelite', name: 'jshell', version: runeLiteVersion
+    implementation 'org.json:json:20230227'
+
+    implementation 'io.reactivex.rxjava3:rxjava:3.1.6'
+
+    compileOnly 'com.example:basilisk-api:0.0.1'
+    runtimeOnly 'com.example:basilisk-api:0.0.1'
+    testImplementation 'com.example:basilisk-api:0.0.1'
+}
+sourceSets {
+    main {
+        java {
+            srcDir "src"
+        }
+    }
+}
+
+group = 'net.runelite.client.plugins'
+version = '0.0.1'
+sourceCompatibility = "11"
+
+
+task FatJar(type: Jar) {
+    manifest {
+        attributes 'Main-Class': 'net.runelite.client.plugins.Main'
+    }
+    baseName = 'basilisk-launcher'
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    from { configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) } }
+    exclude("com/example/hidden")
+    with jar
+}
+
+task FatJarWithHidden(type: Jar) {
+    manifest {
+        attributes 'Main-Class': 'net.runelite.client.plugins.Main'
+    }
+    baseName = 'basilisk-launcher'
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    from { configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
+}
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+targetCompatibility = JavaVersion.VERSION_11
