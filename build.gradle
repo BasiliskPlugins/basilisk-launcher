@@ -26,9 +26,9 @@ dependencies {
 
     implementation 'io.reactivex.rxjava3:rxjava:3.1.6'
 
-    compileOnly 'com.example:basilisk-api:0.0.3'
-    runtimeOnly 'com.example:basilisk-api:0.0.3'
-    testImplementation 'com.example:basilisk-api:0.0.3'
+    compileOnly 'com.example:basilisk-api:0.0.4'
+    runtimeOnly 'com.example:basilisk-api:0.0.4'
+    testImplementation 'com.example:basilisk-api:0.0.4'
 }
 sourceSets {
     main {
